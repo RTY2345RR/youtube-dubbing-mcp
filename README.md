@@ -12,6 +12,8 @@
 
 ▶ **Listen to the real output:** [English dub (MP3)](examples/spanish-to-english-two-speakers/dub.en.mp3) · [dubbed video (MP4)](examples/spanish-to-english-two-speakers/dubbed-interview-en.mp4) · [original Spanish video](examples/spanish-to-english-two-speakers/source-interview-es.mp4) · [synced SRT](examples/spanish-to-english-two-speakers/dub.en.speakers.srt) · or play them in the browser on the [Hugging Face demo page](https://huggingface.co/spaces/miragea/youtube-dubbing-mcp).
 
+<!-- mcp-name: io.github.RTY2345RR/youtube-dubbing-mcp -->
+
 ## Contents
 - [Why this AI dubbing MCP server](#why-this-ai-dubbing-mcp-server)
 - [How YouTube dubbing works here](#how-youtube-dubbing-works-here)

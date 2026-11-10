@@ -18,7 +18,8 @@ CLIENTS = ("claude-desktop", "cursor", "claude-code", "codex", "vscode", "windsu
 KEY_PLACEHOLDER = "<your-miragea-api-key>"
 PACKAGE = "youtube-dubbing-mcp"
 SERVER_KEY = "youtube-dubbing"
-UVX_ARGS = [PACKAGE]
+# Until the PyPI release is live, uvx installs straight from GitHub.
+UVX_ARGS = ["--from", "git+https://github.com/RTY2345RR/youtube-dubbing-mcp", PACKAGE]
 
 
 def config_snippet(client: str) -> str:
@@ -28,7 +29,7 @@ def config_snippet(client: str) -> str:
     if client == "vscode":
         return json.dumps({"servers": {SERVER_KEY: {"type": "stdio", **server}}}, indent=2)
     if client == "claude-code":
-        return f"claude mcp add {SERVER_KEY} -s user -e MIRAGEA_API_KEY={KEY_PLACEHOLDER} -- uvx {PACKAGE}"
+        return f"claude mcp add {SERVER_KEY} -s user -e MIRAGEA_API_KEY={KEY_PLACEHOLDER} -- uvx {' '.join(UVX_ARGS)}"
     if client == "codex":
         return (
             f"[mcp_servers.{SERVER_KEY}]\n"

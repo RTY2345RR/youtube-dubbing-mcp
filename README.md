@@ -1,7 +1,8 @@
 # YouTube Dubbing MCP: AI dubbing with one cloned voice per speaker
 
 [![CI](https://github.com/RTY2345RR/youtube-dubbing-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/RTY2345RR/youtube-dubbing-mcp/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/youtube-dubbing-mcp.svg)](https://pypi.org/project/youtube-dubbing-mcp/)
+[![Docker](https://img.shields.io/docker/v/miragea/youtube-dubbing-mcp?label=docker)](https://hub.docker.com/r/miragea/youtube-dubbing-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-io.github.RTY2345RR%2Fyoutube--dubbing--mcp-blue)](https://registry.modelcontextprotocol.io/v0/servers?search=youtube-dubbing-mcp)
 [![Python](https://img.shields.io/badge/python-3.10%E2%80%933.13-blue.svg)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Live demo](https://img.shields.io/badge/demo-Hugging%20Face-yellow.svg)](https://huggingface.co/spaces/miragea/youtube-dubbing-mcp)
@@ -31,7 +32,7 @@
 - **Timing that fits.** Each line gets a character budget for its time slot in the target language, the agent writes to it, and the renderer starts every line with the original and only speeds up (pitch kept, capped at 1.25×) when it must. The dub track is exactly as long as the video, which YouTube requires.
 - **Upload-ready for YouTube.** One folder per language with `audio.m4a` (AAC 48 kHz), `captions.srt`, a localized title and description, and the YouTube Studio steps.
 - **Resumable and safe.** Everything is saved in a project folder. Re-running a tool reuses finished lines, resumes pending jobs and never submits the same line twice. The API key never appears in output or logs.
-- **No GPU, no local models.** `uvx` installs it in one command; ffmpeg comes bundled. Voices are rendered by the [Miragea](https://miragea.ai) voice engine.
+- **No GPU, no local models.** One `uvx` command or one Docker image; ffmpeg comes bundled. Voices are rendered by the [Miragea](https://miragea.ai) voice engine.
 
 ## How YouTube dubbing works here
 
@@ -52,7 +53,7 @@
 
 **Claude Code**
 ```bash
-claude mcp add youtube-dubbing -s user -e MIRAGEA_API_KEY=<your-key> -- uvx youtube-dubbing-mcp
+claude mcp add youtube-dubbing -s user -e MIRAGEA_API_KEY=<your-key> -- uvx --from git+https://github.com/RTY2345RR/youtube-dubbing-mcp youtube-dubbing-mcp
 ```
 
 **Claude Desktop / Cursor / Windsurf** (`claude_desktop_config.json`, `~/.cursor/mcp.json`)
@@ -61,7 +62,7 @@ claude mcp add youtube-dubbing -s user -e MIRAGEA_API_KEY=<your-key> -- uvx yout
   "mcpServers": {
     "youtube-dubbing": {
       "command": "uvx",
-      "args": ["youtube-dubbing-mcp"],
+      "args": ["--from", "git+https://github.com/RTY2345RR/youtube-dubbing-mcp", "youtube-dubbing-mcp"],
       "env": { "MIRAGEA_API_KEY": "<your-key>" }
     }
   }
@@ -72,14 +73,16 @@ claude mcp add youtube-dubbing -s user -e MIRAGEA_API_KEY=<your-key> -- uvx yout
 ```toml
 [mcp_servers.youtube-dubbing]
 command = "uvx"
-args = ["youtube-dubbing-mcp"]
+args = ["--from", "git+https://github.com/RTY2345RR/youtube-dubbing-mcp", "youtube-dubbing-mcp"]
 tool_timeout_sec = 1800
 env = { MIRAGEA_API_KEY = "<your-key>" }
 ```
 
-**VS Code** (`.vscode/mcp.json`): run `uvx youtube-dubbing-mcp --print-config vscode` and paste the output.
+**VS Code** (`.vscode/mcp.json`): run `uvx --from git+https://github.com/RTY2345RR/youtube-dubbing-mcp youtube-dubbing-mcp --print-config vscode` and paste the output.
 
-Check everything with `uvx youtube-dubbing-mcp --check` (creates no job). Latest `main` instead of the PyPI release: `uvx --from git+https://github.com/RTY2345RR/youtube-dubbing-mcp youtube-dubbing-mcp`.
+**Docker**: `docker run -i --rm -e MIRAGEA_API_KEY -v $HOME/YouTubeDubbing:/data miragea/youtube-dubbing-mcp` ([Docker Hub](https://hub.docker.com/r/miragea/youtube-dubbing-mcp)).
+
+Check everything with `uvx --from git+https://github.com/RTY2345RR/youtube-dubbing-mcp youtube-dubbing-mcp --check` (creates no job). `uvx` installs it straight from this repository in one command; a PyPI release (`uvx youtube-dubbing-mcp`) is on the way.
 
 | Variable | Default | Purpose |
 | --- | --- | --- |

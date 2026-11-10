@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="t d">
+<title id="t">AI dubbing workflow diagram for the YouTube dubbing MCP server</title>
+<desc id="d">Six steps: ingest a YouTube URL, video or SRT; detect speakers; clone a voice per speaker; the agent translates within time budgets; render timed dubbed lines into a track of the video length; package audio tracks and captions for YouTube Studio.</desc>
+<rect width="1200" height="560" rx="18" fill="#0d111c"/>
+<text x="40" y="54" font-family="Helvetica,Arial,sans-serif" font-size="28" font-weight="700" fill="#eef1f7">How the YouTube dubbing MCP server works</text>
+<text x="40" y="88" font-family="Helvetica,Arial,sans-serif" font-size="17" fill="#8c96af">AI agent (Claude · Cursor · Codex) ⇄ MCP tools ⇄ Miragea voice engine · yt-dlp · FFmpeg</text>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8c96af"/></marker></defs>
+<rect x="40" y="125" width="340" height="130" rx="14" fill="#161b2a" stroke="#60a5fa" stroke-width="2"/>
+<text x="60" y="165" font-family="Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#60a5fa">1  Ingest</text>
+<text x="60" y="201" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#eef1f7">YouTube URL · video · audio · SRT</text>
+<text x="60" y="227" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#8c96af">YouTube captions or transcription</text>
+<line x1="384" y1="190.0" x2="424" y2="190.0" stroke="#8c96af" stroke-width="2" marker-end="url(#a)"/>
+<rect x="430" y="125" width="340" height="130" rx="14" fill="#161b2a" stroke="#a78bfa" stroke-width="2"/>
+<text x="450" y="165" font-family="Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#a78bfa">2  Speakers</text>
+<text x="450" y="201" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#eef1f7">Names from caption markers</text>
+<text x="450" y="227" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#8c96af">or grouped by voice pitch</text>
+<line x1="774" y1="190.0" x2="814" y2="190.0" stroke="#8c96af" stroke-width="2" marker-end="url(#a)"/>
+<rect x="820" y="125" width="340" height="130" rx="14" fill="#161b2a" stroke="#f472b6" stroke-width="2"/>
+<text x="840" y="165" font-family="Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#f472b6">3  Voices</text>
+<text x="840" y="201" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#eef1f7">Sample of each speaker, cloned</text>
+<text x="840" y="227" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#8c96af">or a saved voice / reference clip</text>
+<rect x="40" y="315" width="340" height="130" rx="14" fill="#161b2a" stroke="#facc15" stroke-width="2"/>
+<text x="60" y="355" font-family="Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#facc15">4  Translate</text>
+<text x="60" y="391" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#eef1f7">Your agent's own model translates</text>
+<text x="60" y="417" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#8c96af">inside per-line time budgets</text>
+<line x1="384" y1="380.0" x2="424" y2="380.0" stroke="#8c96af" stroke-width="2" marker-end="url(#a)"/>
+<rect x="430" y="315" width="340" height="130" rx="14" fill="#161b2a" stroke="#4ade80" stroke-width="2"/>
+<text x="450" y="355" font-family="Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#4ade80">5  Render</text>
+<text x="450" y="391" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#eef1f7">Each line voiced and placed on time</text>
+<text x="450" y="417" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#8c96af">track = exact video length</text>
+<line x1="774" y1="380.0" x2="814" y2="380.0" stroke="#8c96af" stroke-width="2" marker-end="url(#a)"/>
+<rect x="820" y="315" width="340" height="130" rx="14" fill="#161b2a" stroke="#38bdf8" stroke-width="2"/>
+<text x="840" y="355" font-family="Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#38bdf8">6  Package</text>
+<text x="840" y="391" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#eef1f7">audio.m4a · captions.srt · title</text>
+<text x="840" y="417" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#8c96af">for YouTube Studio → Languages</text>
+<path d="M990.0,259 V285 H210.0 V309" fill="none" stroke="#8c96af" stroke-width="2" marker-end="url(#a)"/>
+<text x="40" y="490" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#eef1f7">One project folder per video: every step can be re-run; finished lines are reused and pending jobs resumed.</text>
+<text x="40" y="520" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#8c96af">Per language: dubbed audio track (AAC 48 kHz) · SRT captions · preview MP4 · localized title and description</text>
+</svg>

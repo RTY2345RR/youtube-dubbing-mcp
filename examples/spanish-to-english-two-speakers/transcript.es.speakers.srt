@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:01,187
+[Marco] Hola a todos.
+
+2
+00:00:01,187 --> 00:00:05,389
+[Marco] Hoy vamos a doblar este video a otro idioma en un solo paso.
+
+3
+00:00:05,389 --> 00:00:10,333
+[Lucia] Y cada persona conserva su propia voz con subtítulos sincronizados.

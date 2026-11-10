@@ -1,0 +1,11 @@
+1
+00:00:00,000 --> 00:00:00,991
+[Marco] Hi everyone.
+
+2
+00:00:01,187 --> 00:00:04,815
+[Marco] Today we're dubbing this video into another language in one step.
+
+3
+00:00:05,389 --> 00:00:09,059
+[Lucia] And everyone keeps their own voice, with synced subtitles.

@@ -1,0 +1,17 @@
+# YouTube Dubbing MCP
+
+> Open-source MCP server (MIT, Python) that lets AI agents such as Claude, Cursor, Codex and VS Code dub YouTube videos, local videos or SRT files into other languages, with one cloned voice per speaker, synced SRT captions and upload-ready YouTube multi-language audio tracks. Voices are rendered by the Miragea voice engine (https://miragea.ai/v1).
+
+Install: `uvx youtube-dubbing-mcp` with env `MIRAGEA_API_KEY` (key from https://miragea.ai/workspace/api). Claude Code: `claude mcp add youtube-dubbing -s user -e MIRAGEA_API_KEY=<key> -- uvx youtube-dubbing-mcp`.
+
+Workflow: dubbing_start_project (YouTube URL, video, audio or SRT) -> dubbing_get_segments / dubbing_assign_speakers -> dubbing_extract_voice_samples(share=true) or dubbing_set_voice -> agent translates with per-line time budgets -> dubbing_set_translation -> dubbing_render (track = video length, SRT, preview MP4) -> dubbing_export_youtube_package (folders for YouTube Studio > Languages). The YouTube Data API cannot upload audio tracks; the package is uploaded in YouTube Studio.
+
+## Docs
+- [README](https://github.com/RTY2345RR/youtube-dubbing-mcp#readme): features, quick start, tools, comparison, FAQ, troubleshooting
+- [Example: Spanish to English, two speakers](https://github.com/RTY2345RR/youtube-dubbing-mcp/tree/main/examples/spanish-to-english-two-speakers)
+- [Live demo with audio](https://huggingface.co/spaces/miragea/youtube-dubbing-mcp)
+- [Changelog](https://github.com/RTY2345RR/youtube-dubbing-mcp/blob/main/CHANGELOG.md)
+
+## Related
+- [TTS MCP Server](https://github.com/RTY2345RR/miragea-voice-mcp): text-to-speech, voiceover and SRT/VTT captions for AI agents
+- [Voice Agent Skills](https://github.com/RTY2345RR/miragea-agent-skills)

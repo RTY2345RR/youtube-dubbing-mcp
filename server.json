@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.RTY2345RR/youtube-dubbing-mcp",
+  "title": "YouTube Dubbing MCP",
+  "description": "AI dubbing for YouTube videos: one cloned voice per speaker, synced SRT, YouTube audio tracks.",
+  "websiteUrl": "https://huggingface.co/spaces/miragea/youtube-dubbing-mcp",
+  "repository": {
+    "url": "https://github.com/RTY2345RR/youtube-dubbing-mcp",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "youtube-dubbing-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "uvx",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        { "name": "MIRAGEA_API_KEY", "description": "Voice engine API key from https://miragea.ai/workspace/api", "isRequired": true, "isSecret": true, "format": "string" },
+        { "name": "DUBBING_OUTPUT_DIR", "description": "Folder for dubbing projects (default ~/YouTubeDubbing)", "isRequired": false, "format": "filepath" },
+        { "name": "YTDLP_COOKIES_FROM_BROWSER", "description": "Browser to read YouTube cookies from when YouTube asks to sign in (chrome, firefox, edge, safari)", "isRequired": false, "format": "string" }
+      ]
+    }
+  ]
+}

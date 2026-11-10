@@ -1,0 +1,25 @@
+# Smithery configuration: https://smithery.ai/docs/build/project-config/smithery-yaml
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - mirageaApiKey
+    properties:
+      mirageaApiKey:
+        type: string
+        description: Voice engine API key from https://miragea.ai/workspace/api
+      outputDir:
+        type: string
+        description: Folder for dubbing projects (default ~/YouTubeDubbing)
+  commandFunction: |-
+    (config) => ({
+      command: 'youtube-dubbing-mcp',
+      args: [],
+      env: Object.assign(
+        { MIRAGEA_API_KEY: config.mirageaApiKey },
+        config.outputDir ? { DUBBING_OUTPUT_DIR: config.outputDir } : {}
+      )
+    })
+  exampleConfig:
+    mirageaApiKey: your-api-key

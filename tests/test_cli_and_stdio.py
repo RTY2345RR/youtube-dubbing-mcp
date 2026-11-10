@@ -35,7 +35,7 @@ def test_config_snippets(client):
     if client in ("claude-desktop", "cursor", "windsurf", "vscode"):
         json.loads(snippet)
     if client == "codex" and tomllib:
-        assert tomllib.loads(snippet)["mcp_servers"]["youtube-dubbing"]["command"] == "uvx"
+        assert tomllib.loads(snippet)["mcp_servers"]["youtube-dubbing"]["args"][-1] == "youtube-dubbing-mcp"
 
 
 def test_print_config(capsys):
